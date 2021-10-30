@@ -37,10 +37,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.release>17</java.release>
 
+        <groovy.version>3.0.9</groovy.version>
+
         <!-- Testing -->
         <junit.version>5.7.0</junit.version>
         <junit.params.version>5.7.0</junit.params.version>
         <junit.platform.version>1.7.0</junit.platform.version>
+        <spock.version>2.0-groovy-3.0</spock.version>
     </properties>
 
     <dependencyManagement>
@@ -81,6 +84,19 @@
             <version>${junit.params.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>${spock.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -110,6 +126,19 @@
         </pluginManagement>
 
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.13.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
